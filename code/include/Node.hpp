@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 21:32:47 by cbaek             #+#    #+#             */
-/*   Updated: 2021/04/30 22:24:33 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/04/30 22:35:45 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,29 @@ class Node {
   Node *right;
   Node *parent;
 
-  Node(){};
+  Node(){}
 
  public:
-  Node(Node const &node){};
+  Node(Node const &node){}
 
   Node(T key) : key(key),
                 left(NULL),
                 right(NULL),
-                parent(NULL){};
+                parent(NULL){}
 
   ~Node(){};
 
-  Node &operator=(Node const &rhs){};
+  Node &operator=(Node const &rhs){}
 
-  void setLeft(Node &node) { this->left = &node; };
-  void setRight(Node &node) { this->right = &node; };
-  void setParent(Node &node) { this->parent = &node; };
+  void setLeft(Node &node) { this->left = &node; }
+  void setRight(Node &node) { this->right = &node; }
+  void setParent(Node &node) { this->parent = &node; }
 
-  Node<T> const &getLeft() const { return (*(this->left)); };
-  Node<T> const &getRight() const { return (*(this->right)); };
-  Node<T> const &getParent() const { return (*(this->parent)); };
+  Node<T> const &getLeft() const { return (*(this->left)); }
+  Node<T> const &getRight() const { return (*(this->right)); }
+  Node<T> const &getParent() const { return (*(this->parent)); }
 
-  T &getKey() { return (this->key); };
+  T &getKey() { return (this->key); }
 
   friend bool operator==(Node const &lhs, Node const &rhs) {
     return (lhs.key == rhs.key);
