@@ -1,0 +1,9 @@
+.vscode
+.DS_Store
+*.out
+*.swp
+temp
+bazel-bin
+bazel-out
+bazel-code
+bazel-testlogs
