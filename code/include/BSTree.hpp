@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 19:49:51 by cbaek             #+#    #+#             */
-/*   Updated: 2021/04/30 22:38:02 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/01 02:09:31 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,23 @@
 
 #include <iostream>
 
-#include "../include/Node.hpp"
+#include "Node.hpp"
+
 template <typename _Node>
 class BSTree {
  private:
-  _Node *root;
+  _Node &root;
 
-  BSTree();
+  BSTree() {}
+
  public:
-  BSTree(BSTree cosnt &bstree);
+  BSTree(BSTree const &bstree) {}
+  BSTree(_Node &root) : root(root) {}
   ~BSTree();
 
-  BSTree &operator=(BSTree const &rhs) {};
+  BSTree &operator=(BSTree const &rhs) {}
+
+  _Node const &getRoot() { return (this->root); }
 };
 
 #endif
