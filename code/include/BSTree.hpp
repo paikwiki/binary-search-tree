@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 19:49:51 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/01 15:58:56 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/01 18:47:30 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,23 @@ class BSTree {
 
   BSTree &operator=(BSTree const &rhs) {}
 
+  void postorderTraversal() {
+    this->root.postorder();
+  }
+
+  void inorderTraversal() {
+    this->root.inorder();
+  }
+
+  void preorderTraversal() {
+    this->root.preorder();
+  }
+
   void insertNode(_Node &node) {
     this->root.insert(node);
   }
 
   _Node const &getRoot() { return (this->root); }
-
 };
 
 #endif
