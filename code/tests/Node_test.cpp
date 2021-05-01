@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 21:45:55 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/01 18:18:10 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/01 18:21:19 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,16 @@ TEST(Node의preorder함수는, 전위순회를_할수있다) {
 
   EXPECT_EQ(output, "A B C D E F G H I J ");
   // teardown
+  delete A;
+  delete B;
+  delete C;
+  delete D;
+  delete E;
+  delete F;
+  delete G;
+  delete H;
+  delete I;
+  delete J;
 }
 
 TEST(Node의insert함수는, 트리에_이미_해당값이_있을_경우_예외를_발생한다_2) {
