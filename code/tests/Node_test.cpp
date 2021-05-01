@@ -6,12 +6,48 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 21:45:55 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/01 16:26:54 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/01 16:44:07 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Node.hpp"
 #include "gtest/gtest.h"
+
+TEST(Node의insert함수는, 트리에_이미_해당값이_있을_경우_예외를_발생한다_2) {
+  // setup
+  Node<int> *root = new Node<int>(42);
+  Node<int> *node1 = new Node<int>(4);
+  Node<int> *node2 = new Node<int>(2);
+  Node<int> *node3 = new Node<int>(42);
+  Node<int> *node4 = new Node<int>(2);
+
+  root->insert(*node1);
+  root->insert(*node2);
+
+  // test
+  EXPECT_THROW(root->insert(*node3), std::exception);
+  EXPECT_THROW(root->insert(*node4), std::exception);
+
+  // teardown
+  delete root;
+  delete node1;
+  delete node2;
+  delete node3;
+  delete node4;
+}
+
+TEST(Node의insert함수는, 트리에_이미_해당값이_있을_경우_예외를_발생한다_1) {
+  // setup
+  Node<int> *root = new Node<int>(42);
+  Node<int> *node1 = new Node<int>(42);
+
+  // test
+  EXPECT_THROW(root->insert(*node1), std::exception);
+
+  // teardown
+  delete root;
+  delete node1;
+}
 
 TEST(Node의insert함수는, 하위노드가_있을_경우_재귀적으로_삽입위치를_찾는다_3) {
   // setup

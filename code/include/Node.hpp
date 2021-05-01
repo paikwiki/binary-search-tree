@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 21:32:47 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/01 16:19:24 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/01 16:41:40 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define NODE_H
 
 #include <iostream>
+#include <exception>
 
 template <typename T>
 class Node {
@@ -38,6 +39,8 @@ class Node {
   Node &operator=(Node const &rhs) {}
 
   void insert(Node<T> &node) {
+    if (this->key == node.key)
+      throw std::exception();
     if (this->key > node.key) {
       if (this->left == static_cast<Node<T> *>(NULL))
         this->left = &node;
