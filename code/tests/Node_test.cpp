@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 21:45:55 by cbaek             #+#    #+#             */
-/*   Updated: 2021/04/30 22:22:01 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/01 15:24:44 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,36 +18,40 @@ TEST(Node는, 상위노드를_가질_수_있다) {
   Node<int> *node = new Node<int>(42);
   int parentKey = 21;
 
-  Node<int> *parentNode = new Node<int>(parentKey);
 
-  node->setParent(*parentNode);
+  node->parent = new Node<int>(parentKey);
 
   // test
-  EXPECT_EQ(node->getParent(), *parentNode);
+  EXPECT_EQ(node->parent->key, parentKey);
 
   // teardown
-  delete parentNode;
   delete node;
 }
 
 TEST(Node는, 좌우_각각_하위노드를_가질_수_있다) {
   // setup
   Node<int> *node = new Node<int>(42);
-  int leftKey = 21;
-  int rightKey = 84;
+  node->left = new Node<int>(21);
+  node->right = new Node<int>(84);
 
-  Node<int> *leftNode = new Node<int>(leftKey);
-  Node<int> *rightNode = new Node<int>(rightKey);
-  node->setLeft(*leftNode);
-  node->setRight(*rightNode);
 
   // test
-  EXPECT_EQ(node->getLeft(), *leftNode);
-  EXPECT_EQ(node->getRight(), *rightNode);
+  EXPECT_EQ(node->left->key, 21);
+  EXPECT_EQ(node->right->key, 84);
 
   // teardown
-  delete leftNode;
-  delete rightNode;
+  delete node;
+}
+
+TEST(Node는, 생성시_하위노드의_값은_NULL이다) {
+  // setup
+  Node<int> *node = new Node<int>(42);
+
+  // test
+  EXPECT_EQ(node->right, static_cast<Node<int> *>(0));
+  EXPECT_EQ(node->left, static_cast<Node<int> *>(0));
+
+  // teardown
   delete node;
 }
 
@@ -56,7 +60,7 @@ TEST(Node는, 생성시_반드시_키값을_갖는다) {
   Node<int> *node = new Node<int>(42);
 
   // test
-  EXPECT_EQ(node->getKey(), 42);
+  EXPECT_EQ(node->key, 42);
 
   // teardown
   delete node;
