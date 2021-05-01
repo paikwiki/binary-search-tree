@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 21:32:47 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/01 15:37:58 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/01 15:56:15 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ class Node {
   Node() {}
 
  public:
- T key;
-  Node *left;
-  Node *right;
-  Node *parent;
+  T key;
+  Node<T> *left;
+  Node<T> *right;
+  Node<T> *parent;
 
   Node(Node const &node) {}
 
@@ -37,12 +37,22 @@ class Node {
 
   Node &operator=(Node const &rhs) {}
 
+  void insert(Node<T> &node) {
+    if (this->key > node.key) {
+      this->left = &node;
+    } else {
+      this->right = &node;
+    }
+  }
+
   friend bool operator==(Node const &lhs, Node const &rhs) {
     return (lhs.key == rhs.key);
   }
+
   friend bool operator>(Node const &lhs, Node const &rhs) {
     return (lhs.key > rhs.key);
   }
+
   friend bool operator<(Node const &lhs, Node const &rhs) {
     return (lhs.key < rhs.key);
   }
