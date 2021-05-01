@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 21:32:47 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/01 18:42:22 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/02 00:26:20 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,12 @@ class Node {
   T key;
   Node<T> *left;
   Node<T> *right;
-  Node<T> *parent;
 
   Node(Node const &node) {}
 
   Node(T key) : key(key),
                 left(static_cast<Node<T> *>(NULL)),
-                right(static_cast<Node<T> *>(NULL)),
-                parent(static_cast<Node<T> *>(NULL)) {}
+                right(static_cast<Node<T> *>(NULL)) {}
 
   ~Node(){};
 

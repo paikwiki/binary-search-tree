@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 21:45:55 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/01 18:41:41 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/02 00:25:20 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -300,20 +300,6 @@ TEST(Node의insert함수는, key보다_작은_노드를_좌측_하위노드에_�
   // test
   EXPECT_EQ(node->left->key, 21);
   EXPECT_EQ(node->right, static_cast<Node<int> *>(0));
-
-  // teardown
-  delete node;
-}
-
-TEST(Node는, 상위노드를_가질_수_있다) {
-  // setup
-  Node<int> *node = new Node<int>(42);
-  int parentKey = 21;
-
-  node->parent = new Node<int>(parentKey);
-
-  // test
-  EXPECT_EQ(node->parent->key, parentKey);
 
   // teardown
   delete node;
