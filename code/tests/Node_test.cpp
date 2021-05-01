@@ -6,12 +6,48 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 21:45:55 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/01 16:44:07 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/01 18:18:10 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Node.hpp"
+
+#include <sstream>
+
 #include "gtest/gtest.h"
+
+TEST(Node의preorder함수는, 전위순회를_할수있다) {
+  // setup
+  Node<char> *A = new Node<char>('A');
+  Node<char> *B = new Node<char>('B');
+  Node<char> *C = new Node<char>('C');
+  Node<char> *D = new Node<char>('D');
+  Node<char> *E = new Node<char>('E');
+  Node<char> *F = new Node<char>('F');
+  Node<char> *G = new Node<char>('G');
+  Node<char> *H = new Node<char>('H');
+  Node<char> *I = new Node<char>('I');
+  Node<char> *J = new Node<char>('J');
+
+  A->left = B;
+  B->left = C;
+  C->left = D;
+  D->right = E;
+  B->right = F;
+  F->left = G;
+  F->right = H;
+  A->right = I;
+  I->right = J;
+
+  // test
+
+  testing::internal::CaptureStdout();
+  A->preorder();
+  std::string output = testing::internal::GetCapturedStdout();
+
+  EXPECT_EQ(output, "A B C D E F G H I J ");
+  // teardown
+}
 
 TEST(Node의insert함수는, 트리에_이미_해당값이_있을_경우_예외를_발생한다_2) {
   // setup
@@ -177,7 +213,6 @@ TEST(Node는, 상위노드를_가질_수_있다) {
   Node<int> *node = new Node<int>(42);
   int parentKey = 21;
 
-
   node->parent = new Node<int>(parentKey);
 
   // test
@@ -192,7 +227,6 @@ TEST(Node는, 좌우_각각_하위노드를_가질_수_있다) {
   Node<int> *node = new Node<int>(42);
   node->left = new Node<int>(21);
   node->right = new Node<int>(84);
-
 
   // test
   EXPECT_EQ(node->left->key, 21);

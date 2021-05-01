@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 21:32:47 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/01 16:41:40 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/01 18:04:33 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <exception>
+#include <sstream>
 
 template <typename T>
 class Node {
@@ -52,6 +53,14 @@ class Node {
       else
         this->right->insert(node);
     }
+  }
+
+  void preorder() {
+    if (this == static_cast<Node<T> *>(NULL))
+      return ;
+    std::cout << this->key << " ";
+    this->left->preorder();
+    this->right->preorder();
   }
 
   friend bool operator==(Node const &lhs, Node const &rhs) {
