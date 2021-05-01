@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 19:49:51 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/01 02:50:55 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/01 15:29:12 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ class BSTree {
 
   void insertNode(_Node &node) {
     if (this->root > node)
-      (this->root).setLeft(node);
+      (this->root).left = &node;
     else
-      (this->root).setRight(node);
+      (this->root).right = &node;
   }
 
   _Node const &getRoot() { return (this->root); }
