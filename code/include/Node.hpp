@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 21:32:47 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/01 15:56:15 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/01 16:19:24 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,15 @@ class Node {
 
   void insert(Node<T> &node) {
     if (this->key > node.key) {
-      this->left = &node;
+      if (this->left == static_cast<Node<T> *>(NULL))
+        this->left = &node;
+      else
+        this->left->insert(node);
     } else {
-      this->right = &node;
+      if (this->right == static_cast<Node<T> *>(NULL))
+        this->right = &node;
+      else
+        this->right->insert(node);
     }
   }
 
