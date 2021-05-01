@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 21:45:55 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/01 18:31:05 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/01 18:41:41 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,49 @@
 #include <sstream>
 
 #include "gtest/gtest.h"
+
+TEST(Node의postorder함수는, 후위순회를_할수있다) {
+  // setup
+  Node<char> *A = new Node<char>('A');
+  Node<char> *B = new Node<char>('B');
+  Node<char> *C = new Node<char>('C');
+  Node<char> *D = new Node<char>('D');
+  Node<char> *E = new Node<char>('E');
+  Node<char> *F = new Node<char>('F');
+  Node<char> *G = new Node<char>('G');
+  Node<char> *H = new Node<char>('H');
+  Node<char> *I = new Node<char>('I');
+  Node<char> *J = new Node<char>('J');
+
+  E->left = A;
+  D->left = B;
+  D->right = C;
+  E->right = D;
+  J->left = E;
+  I->left = F;
+  H->left = G;
+  I->right = H;
+  J->right = I;
+
+  // test
+
+  testing::internal::CaptureStdout();
+  J->postorder();
+  std::string output = testing::internal::GetCapturedStdout();
+
+  EXPECT_EQ(output, "A B C D E F G H I J ");
+  // teardown
+  delete A;
+  delete B;
+  delete C;
+  delete D;
+  delete E;
+  delete F;
+  delete G;
+  delete H;
+  delete I;
+  delete J;
+}
 
 TEST(Node의inorder함수는, 중위순회를_할수있다) {
   // setup

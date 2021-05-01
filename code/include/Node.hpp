@@ -6,15 +6,15 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 21:32:47 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/01 18:33:27 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/01 18:42:22 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef NODE_H
 #define NODE_H
 
-#include <iostream>
 #include <exception>
+#include <iostream>
 #include <sstream>
 
 template <typename T>
@@ -55,10 +55,17 @@ class Node {
     }
   }
 
-  void inorder() {
-    // std::cout << "A B C D E F G H I J ";
+  void postorder() {
     if (this == static_cast<Node<T> *>(NULL))
-      return ;
+      return;
+    this->left->postorder();
+    this->right->postorder();
+    std::cout << this->key << " ";
+  }
+
+  void inorder() {
+    if (this == static_cast<Node<T> *>(NULL))
+      return;
     this->left->inorder();
     std::cout << this->key << " ";
     this->right->inorder();
@@ -66,7 +73,7 @@ class Node {
 
   void preorder() {
     if (this == static_cast<Node<T> *>(NULL))
-      return ;
+      return;
     std::cout << this->key << " ";
     this->left->preorder();
     this->right->preorder();
