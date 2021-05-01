@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 21:32:47 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/01 18:04:33 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/01 18:33:27 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,15 @@ class Node {
       else
         this->right->insert(node);
     }
+  }
+
+  void inorder() {
+    // std::cout << "A B C D E F G H I J ";
+    if (this == static_cast<Node<T> *>(NULL))
+      return ;
+    this->left->inorder();
+    std::cout << this->key << " ";
+    this->right->inorder();
   }
 
   void preorder() {
