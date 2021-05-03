@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 19:49:51 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/01 18:47:30 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/03 21:04:06 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class BSTree {
  public:
   BSTree(BSTree const &bstree) {}
   BSTree(_Node &root) : root(root) {}
-  ~BSTree();
+  ~BSTree() {}
 
   BSTree &operator=(BSTree const &rhs) {}
 

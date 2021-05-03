@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 20:01:10 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/01 18:50:08 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/03 21:11:12 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ TEST(BSTree_postorder함수는, 후위순회를_할수있다) {
   delete H;
   delete I;
   delete J;
+  delete bst;
 }
 
 TEST(BSTree_inorderTraveral함수는, 중위순회를_할수있다) {
@@ -101,6 +102,7 @@ TEST(BSTree_inorderTraveral함수는, 중위순회를_할수있다) {
   delete H;
   delete I;
   delete J;
+  delete bst;
 }
 
 TEST(BSTree_preorder함수는, 전위순회를_할수있다) {
@@ -146,6 +148,7 @@ TEST(BSTree_preorder함수는, 전위순회를_할수있다) {
   delete H;
   delete I;
   delete J;
+  delete bst;
 }
 
 TEST(BSTree_insertNode함수는, 자신보다_큰_key의_노드를_오른쪽에_삽입한다) {
@@ -162,7 +165,7 @@ TEST(BSTree_insertNode함수는, 자신보다_큰_key의_노드를_오른쪽에_
 
   // teardown
   delete node;
-  // delete bst; // TODO: delete
+  delete bst;
 }
 
 TEST(BSTree_insertNode함수는, 자신보다_작은_key의_노드를_왼쪽에_삽입한다) {
@@ -179,21 +182,21 @@ TEST(BSTree_insertNode함수는, 자신보다_작은_key의_노드를_왼쪽에_
 
   // teardown
   delete node;
-  // delete bst; // TODO: delete
+  delete bst;
 }
 
-TEST(BSTree_루트노드는, 부모로_NULL_을_갖는다) {
-  // setup
-  Node<int> *node = new Node<int>(42);
-  BSTree<Node<int> > *bst = new BSTree<Node<int> >(*node);
+// TEST(BSTree_루트노드는, 부모로_NULL_을_갖는다) {
+//   // setup
+//   Node<int> *node = new Node<int>(42);
+//   BSTree<Node<int> > *bst = new BSTree<Node<int> >(*node);
 
-  // test
-  EXPECT_EQ((bst->getRoot()).parent, node->parent);
+//   // test
+//   EXPECT_EQ((bst->getRoot()).parent, node->parent);
 
-  // teardown
-  delete node;
-  // delete bst; // TODO: delete
-}
+//   // teardown
+//   delete node;
+//   // delete bst;
+// }
 
 TEST(BSTree는, 생성시_반드시_루트노드를_인자로_받는다) {
   // setup
@@ -205,5 +208,5 @@ TEST(BSTree는, 생성시_반드시_루트노드를_인자로_받는다) {
 
   // teardown
   delete node;
-  // delete bst; // TODO: delete
+  delete bst;
 }

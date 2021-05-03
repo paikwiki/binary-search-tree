@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 21:32:47 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/02 00:26:20 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/03 21:08:11 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ class Node {
 
  public:
   T key;
-  Node<T> *left;
-  Node<T> *right;
+  Node *left;
+  Node *right;
 
   Node(Node const &node) {}
 
   Node(T key) : key(key),
-                left(static_cast<Node<T> *>(NULL)),
-                right(static_cast<Node<T> *>(NULL)) {}
+                left(NULL),
+                right(NULL) {}
 
   ~Node(){};
 
@@ -41,12 +41,12 @@ class Node {
     if (this->key == node.key)
       throw std::exception();
     if (this->key > node.key) {
-      if (this->left == static_cast<Node<T> *>(NULL))
+      if (this->left == NULL)
         this->left = &node;
       else
         this->left->insert(node);
     } else {
-      if (this->right == static_cast<Node<T> *>(NULL))
+      if (this->right == NULL)
         this->right = &node;
       else
         this->right->insert(node);
@@ -54,7 +54,7 @@ class Node {
   }
 
   void postorder() {
-    if (this == static_cast<Node<T> *>(NULL))
+    if (this == (static_cast<void *>(NULL)))
       return;
     this->left->postorder();
     this->right->postorder();
@@ -62,7 +62,7 @@ class Node {
   }
 
   void inorder() {
-    if (this == static_cast<Node<T> *>(NULL))
+    if (this == static_cast<void *>(NULL))
       return;
     this->left->inorder();
     std::cout << this->key << " ";
@@ -70,7 +70,7 @@ class Node {
   }
 
   void preorder() {
-    if (this == static_cast<Node<T> *>(NULL))
+    if (this == static_cast<void *>(NULL))
       return;
     std::cout << this->key << " ";
     this->left->preorder();
