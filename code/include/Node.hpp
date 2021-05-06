@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 21:32:47 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/03 21:08:11 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/06 21:10:14 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,35 @@
 template <typename T>
 class Node {
  private:
+  T key;
+  Node *parent;
+  Node *left;
+  Node *right;
+
   Node() {}
 
  public:
-  T key;
-  Node *left;
-  Node *right;
 
   Node(Node const &node) {}
 
   Node(T key) : key(key),
+                parent(NULL),
                 left(NULL),
                 right(NULL) {}
 
   ~Node(){};
 
   Node &operator=(Node const &rhs) {}
+
+  void setKey(T &key) { this->key = &key; }
+  void setLeft(Node<T> &left) { this->left = &left; }
+  void setRight(Node<T> &right) { this->right = &right; }
+  void setParent(Node<T> &parent) { this->parent = &parent; }
+
+  T const getKey() const { return (this->key); }
+  Node<T> const *getLeft() const { return (this->left); }
+  Node<T> const *getRight() const { return (this->right); }
+  Node<T> const *getParent() const { return (this->parent); }
 
   void insert(Node<T> &node) {
     if (this->key == node.key)

@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 21:45:55 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/03 21:10:24 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/06 21:16:48 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,15 @@ TEST(Node의postorder함수는, 후위순회를_할수있다) {
   Node<char> *I = new Node<char>('I');
   Node<char> *J = new Node<char>('J');
 
-  E->left = A;
-  D->left = B;
-  D->right = C;
-  E->right = D;
-  J->left = E;
-  I->left = F;
-  H->left = G;
-  I->right = H;
-  J->right = I;
+  E->setLeft(*A);
+  D->setLeft(*B);
+  D->setRight(*C);
+  E->setRight(*D);
+  J->setLeft(*E);
+  I->setLeft(*F);
+  H->setLeft(*G);
+  I->setRight(*H);
+  J->setRight(*I);
 
   // test
 
@@ -72,16 +72,16 @@ TEST(Node의inorder함수는, 중위순회를_할수있다) {
   Node<char> *I = new Node<char>('I');
   Node<char> *J = new Node<char>('J');
 
-  B->left = A;
-  F->left = B;
-  D->left = C;
-  B->right = D;
-  D->right = E;
+  B->setLeft(*A);
+  F->setLeft(*B);
+  D->setLeft(*C);
+  B->setRight(*D);
+  D->setRight(*E);
 
-  F->right = G;
-  G->right = I;
-  I->left = H;
-  I->right = J;
+  F->setRight(*G);
+  G->setRight(*I);
+  I->setLeft(*H);
+  I->setRight(*J);
 
   // test
 
@@ -116,15 +116,15 @@ TEST(Node의preorder함수는, 전위순회를_할수있다) {
   Node<char> *I = new Node<char>('I');
   Node<char> *J = new Node<char>('J');
 
-  A->left = B;
-  B->left = C;
-  C->left = D;
-  D->right = E;
-  B->right = F;
-  F->left = G;
-  F->right = H;
-  A->right = I;
-  I->right = J;
+  A->setLeft(*B);
+  B->setLeft(*C);
+  C->setLeft(*D);
+  D->setRight(*E);
+  B->setRight(*F);
+  F->setLeft(*G);
+  F->setRight(*H);
+  A->setRight(*I);
+  I->setRight(*J);
 
   // test
 
@@ -199,12 +199,12 @@ TEST(Node의insert함수는, 하위노드가_있을_경우_재귀적으로_삽�
   root->insert(*node3);
 
   // test
-  EXPECT_EQ(root->left->key, 2);
-  EXPECT_EQ(root->right->key, 21);
-  EXPECT_EQ(root->right->right->key, 42);
-  EXPECT_EQ(root->left->left,  static_cast<void *>(NULL));
-  EXPECT_EQ(root->left->right,  static_cast<void *>(NULL));
-  EXPECT_EQ(root->right->left,  static_cast<void *>(NULL));
+  EXPECT_EQ(root->getLeft()->getKey(), 2);
+  EXPECT_EQ(root->getRight()->getKey(), 21);
+  EXPECT_EQ(root->getRight()->getRight()->getKey(), 42);
+  EXPECT_EQ(root->getLeft()->getLeft(),  static_cast<void *>(NULL));
+  EXPECT_EQ(root->getLeft()->getRight(),  static_cast<void *>(NULL));
+  EXPECT_EQ(root->getRight()->getLeft(),  static_cast<void *>(NULL));
 
   // teardown
   delete root;
@@ -230,10 +230,10 @@ TEST(Node의insert함수는, 하위노드가_있을_경우_재귀적으로_삽�
   node->insert(*smallestNode);
 
   // test
-  EXPECT_EQ(node->left->key, 4);
-  EXPECT_EQ(node->left->left->key, 2);
-  EXPECT_EQ(node->left->right->key, 21);
-  EXPECT_EQ(node->right,  static_cast<void *>(NULL));
+  EXPECT_EQ(node->getLeft()->getKey(), 4);
+  EXPECT_EQ(node->getLeft()->getLeft()->getKey(), 2);
+  EXPECT_EQ(node->getLeft()->getRight()->getKey(), 21);
+  EXPECT_EQ(node->getRight(),  static_cast<void *>(NULL));
 
   // teardown
   delete node;
@@ -261,13 +261,13 @@ TEST(Node의insert함수는, 하위노드가_있을_경우_재귀적으로_삽�
   node->insert(*smallestNode);
 
   // test
-  EXPECT_EQ(node->left->key, 21);
-  EXPECT_EQ(node->left->left->key, 4);
-  EXPECT_EQ(node->left->left->left->key, 2);
-  EXPECT_EQ(node->right,  static_cast<void *>(NULL));
-  EXPECT_EQ(node->left->right,  static_cast<void *>(NULL));
-  EXPECT_EQ(node->left->left->right,  static_cast<void *>(NULL));
-  EXPECT_EQ(node->left->left->left->right,  static_cast<void *>(NULL));
+  EXPECT_EQ(node->getLeft()->getKey(), 21);
+  EXPECT_EQ(node->getLeft()->getLeft()->getKey(), 4);
+  EXPECT_EQ(node->getLeft()->getLeft()->getLeft()->getKey(), 2);
+  EXPECT_EQ(node->getRight(),  static_cast<void *>(NULL));
+  EXPECT_EQ(node->getLeft()->getRight(),  static_cast<void *>(NULL));
+  EXPECT_EQ(node->getLeft()->getLeft()->getRight(),  static_cast<void *>(NULL));
+  EXPECT_EQ(node->getLeft()->getLeft()->getLeft()->getRight(),  static_cast<void *>(NULL));
 
   // teardown
   delete node;
@@ -283,8 +283,8 @@ TEST(Node의insert함수는, key보다_큰_노드를_우측_하위노드에_추�
   node->insert(*bigNode);
 
   // test
-  EXPECT_EQ(node->right->key, 84);
-  EXPECT_EQ(node->left,  static_cast<void *>(NULL));
+  EXPECT_EQ(node->getRight()->getKey(), 84);
+  EXPECT_EQ(node->getLeft(),  static_cast<void *>(NULL));
 
   // teardown
   delete node;
@@ -298,22 +298,39 @@ TEST(Node의insert함수는, key보다_작은_노드를_좌측_하위노드에_�
   node->insert(*smallNode);
 
   // test
-  EXPECT_EQ(node->left->key, 21);
-  EXPECT_EQ(node->right,  static_cast<void *>(NULL));
+  EXPECT_EQ(node->getLeft()->getKey(), 21);
+  EXPECT_EQ(node->getRight(),  static_cast<void *>(NULL));
 
   // teardown
+  delete node;
+}
+
+TEST(Node는, 상위노드를_가질_수_있다) {
+  // setup
+  Node<int> *node = new Node<int>(42);
+  Node<int> *parentNode = new Node<int>(21);
+
+  node->setParent(*parentNode);
+
+  // test
+  EXPECT_EQ(node->getParent(), parentNode);
+
+  // teardown
+  delete parentNode;
   delete node;
 }
 
 TEST(Node는, 좌우_각각_하위노드를_가질_수_있다) {
   // setup
   Node<int> *node = new Node<int>(42);
-  node->left = new Node<int>(21);
-  node->right = new Node<int>(84);
+  Node<int> *leftNode = new Node<int>(21);
+  Node<int> *rightNode = new Node<int>(84);
+  node->setLeft(*leftNode);
+  node->setRight(*rightNode);
 
   // test
-  EXPECT_EQ(node->left->key, 21);
-  EXPECT_EQ(node->right->key, 84);
+  EXPECT_EQ(node->getLeft()->getKey(), 21);
+  EXPECT_EQ(node->getRight()->getKey(), 84);
 
   // teardown
   delete node;
@@ -324,9 +341,9 @@ TEST(Node는, 생성시_하위노드의_값은_NULL이다) {
   Node<int> *node = new Node<int>(42);
   // Node<int> *temp = new Node<int>(23);
   // test
-  // EXPECT_NE(node->right, temp->right);
-  EXPECT_EQ(node->right, static_cast<void *>(NULL));
-  EXPECT_EQ(node->left, static_cast<void *>(NULL));
+  // EXPECT_NE(node->getRight(), temp->getRight());
+  EXPECT_EQ(node->getRight(), static_cast<void *>(NULL));
+  EXPECT_EQ(node->getLeft(), static_cast<void *>(NULL));
 
   // teardown
   delete node;
@@ -337,7 +354,7 @@ TEST(Node는, 생성시_반드시_키값을_갖는다) {
   Node<int> *node = new Node<int>(42);
 
   // test
-  EXPECT_EQ(node->key, 42);
+  EXPECT_EQ(node->getKey(), 42);
 
   // teardown
   delete node;
