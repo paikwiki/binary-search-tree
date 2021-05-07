@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 21:32:47 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/07 14:28:47 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/07 14:55:07 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,18 +86,18 @@ class BinarySearchTreeNode : public BaseBinaryNode<T> {
   ~BinarySearchTreeNode(){};
 
   void postorder() {
-    this->travesal = postorderByBST;
-    this->travesal(this, printValue);
+    this->traversal = postorderByBST;
+    this->traversal(this, printValue);
   }
 
   void inorder() {
-    this->travesal = inorderByBST;
-    this->travesal(this, printValue);
+    this->traversal = inorderByBST;
+    this->traversal(this, printValue);
   }
 
   void preorder() {
-    this->travesal = preorderByBST;
-    this->travesal(this, printValue);
+    this->traversal = preorderByBST;
+    this->traversal(this, printValue);
   }
 };
 

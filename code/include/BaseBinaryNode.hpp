@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 21:21:37 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/07 14:11:58 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/07 14:54:53 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ class BaseBinaryNode {
   BaseBinaryNode &operator=(BaseBinaryNode const &rhs) {}
 
   void (*insert)(BaseBinaryNode<T> *tree, BaseBinaryNode<T> &node);
-  void (*travesal)(BaseBinaryNode<T> *tree, void (*f)(T val));
+  void (*traversal)(BaseBinaryNode<T> *tree, void (*f)(T val));
 
   virtual void setKey(T &key) { this->key = key; }
   virtual void setLeft(BaseBinaryNode<T> &left) { this->left = &left; }
