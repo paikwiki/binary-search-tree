@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 19:49:51 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/03 21:04:06 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/07 14:01:07 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include <iostream>
 
-#include "Node.hpp"
+#include "BinarySearchTreeNode.hpp"
 
 template <typename _Node>
 class BSTree {
@@ -44,7 +44,7 @@ class BSTree {
   }
 
   void insertNode(_Node &node) {
-    this->root.insert(node);
+    this->root.insert(&root, node);
   }
 
   _Node const &getRoot() { return (this->root); }
