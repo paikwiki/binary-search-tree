@@ -6,12 +6,14 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 21:21:37 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/07 13:40:04 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/07 14:11:58 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BASE_BINARY_NODE_H
 #define BASE_BINARY_NODE_H
+
+#include <iostream>
 
 template <typename T>
 class BaseBinaryNode {
