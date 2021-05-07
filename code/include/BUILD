@@ -7,7 +7,7 @@ cc_library(
 
 cc_library(
   name = "node",
-  hdrs = ["Node.hpp"],
+  hdrs = ["BinarySearchTreeNode.hpp"],
   visibility = ["//visibility:public"]
 )
 

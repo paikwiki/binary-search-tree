@@ -11,7 +11,7 @@ cc_test(
 
 cc_test(
   name = "node",
-  srcs = ["Node_test.cpp"],
+  srcs = ["BinarySearchTreeNode_test.cpp"],
   deps = [
     "//include:base_node",
     "//include:node",

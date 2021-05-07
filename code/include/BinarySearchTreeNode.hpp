@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Node.hpp                                           :+:      :+:    :+:   */
+/*   BinarySearchTreeNode.hpp                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 21:32:47 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/07 13:45:13 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/07 13:50:58 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,18 +69,18 @@ void printValue(T val) {
 }
 
 template <typename T>
-class Node : public BaseBinaryNode<T> {
+class BinarySearchTreeNode : public BaseBinaryNode<T> {
  private:
-  Node() {}
+  BinarySearchTreeNode() {}
 
  public:
-  Node(Node const &node) {}
+  BinarySearchTreeNode(BinarySearchTreeNode const &node) {}
 
-  Node(T key) : BaseBinaryNode<T>(key) {
+  BinarySearchTreeNode(T key) : BaseBinaryNode<T>(key) {
     this->insert = insertByBST;
   }
 
-  ~Node(){};
+  ~BinarySearchTreeNode(){};
 
   void postorder() {
     this->travesal = postorderByBST;
