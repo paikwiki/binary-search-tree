@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   BSTree_test.cpp                                    :+:      :+:    :+:   */
+/*   BinarySearchTree_test.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 20:01:10 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/07 14:02:47 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/07 14:07:30 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/BSTree.hpp"
+#include "../include/BinarySearchTree.hpp"
 
 #include "gtest/gtest.h"
 
-TEST(BSTree_postorder함수는, 후위순회를_할수있다) {
+TEST(BinarySearchTree_postorder함수는, 후위순회를_할수있다) {
   // setup
   BinarySearchTreeNode<char> *A = new BinarySearchTreeNode<char>('A');
   BinarySearchTreeNode<char> *B = new BinarySearchTreeNode<char>('B');
@@ -37,7 +37,7 @@ TEST(BSTree_postorder함수는, 후위순회를_할수있다) {
   I->setRight(*H);
   J->setRight(*I);
 
-  BSTree<BinarySearchTreeNode<char> > *bst = new BSTree<BinarySearchTreeNode<char> >(*J);
+  BinarySearchTree<BinarySearchTreeNode<char> > *bst = new BinarySearchTree<BinarySearchTreeNode<char> >(*J);
 
   // test
   testing::internal::CaptureStdout();
@@ -60,7 +60,7 @@ TEST(BSTree_postorder함수는, 후위순회를_할수있다) {
   delete bst;
 }
 
-TEST(BSTree_inorderTraveral함수는, 중위순회를_할수있다) {
+TEST(BinarySearchTree_inorderTraveral함수는, 중위순회를_할수있다) {
   // setup
   BinarySearchTreeNode<char> *A = new BinarySearchTreeNode<char>('A');
   BinarySearchTreeNode<char> *B = new BinarySearchTreeNode<char>('B');
@@ -83,7 +83,7 @@ TEST(BSTree_inorderTraveral함수는, 중위순회를_할수있다) {
   I->setLeft(*H);
   I->setRight(*J);
 
-  BSTree<BinarySearchTreeNode<char> > *bst = new BSTree<BinarySearchTreeNode<char> >(*F);
+  BinarySearchTree<BinarySearchTreeNode<char> > *bst = new BinarySearchTree<BinarySearchTreeNode<char> >(*F);
 
   // test
   testing::internal::CaptureStdout();
@@ -106,7 +106,7 @@ TEST(BSTree_inorderTraveral함수는, 중위순회를_할수있다) {
   delete bst;
 }
 
-TEST(BSTree_preorder함수는, 전위순회를_할수있다) {
+TEST(BinarySearchTree_preorder함수는, 전위순회를_할수있다) {
   // setup
   BinarySearchTreeNode<char> *A = new BinarySearchTreeNode<char>('A');
   BinarySearchTreeNode<char> *B = new BinarySearchTreeNode<char>('B');
@@ -129,7 +129,7 @@ TEST(BSTree_preorder함수는, 전위순회를_할수있다) {
   A->setRight(*I);
   I->setRight(*J);
 
-  BSTree<BinarySearchTreeNode<char> > *bst = new BSTree<BinarySearchTreeNode<char> >(*A);
+  BinarySearchTree<BinarySearchTreeNode<char> > *bst = new BinarySearchTree<BinarySearchTreeNode<char> >(*A);
 
   // test
   testing::internal::CaptureStdout();
@@ -152,10 +152,10 @@ TEST(BSTree_preorder함수는, 전위순회를_할수있다) {
   delete bst;
 }
 
-TEST(BSTree_insertNode함수는, 자신보다_큰_key의_노드를_오른쪽에_삽입한다) {
+TEST(BinarySearchTree_insertNode함수는, 자신보다_큰_key의_노드를_오른쪽에_삽입한다) {
   // setup
   BinarySearchTreeNode<int> *node = new BinarySearchTreeNode<int>(42);
-  BSTree<BinarySearchTreeNode<int> > *bst = new BSTree<BinarySearchTreeNode<int> >(*node);
+  BinarySearchTree<BinarySearchTreeNode<int> > *bst = new BinarySearchTree<BinarySearchTreeNode<int> >(*node);
 
   BinarySearchTreeNode<int> *bigNode = new BinarySearchTreeNode<int>(47);
   bst->insertNode(*bigNode);
@@ -169,10 +169,10 @@ TEST(BSTree_insertNode함수는, 자신보다_큰_key의_노드를_오른쪽에_
   delete bst;
 }
 
-TEST(BSTree_insertNode함수는, 자신보다_작은_key의_노드를_왼쪽에_삽입한다) {
+TEST(BinarySearchTree_insertNode함수는, 자신보다_작은_key의_노드를_왼쪽에_삽입한다) {
   // setup
   BinarySearchTreeNode<int> *node = new BinarySearchTreeNode<int>(42);
-  BSTree<BinarySearchTreeNode<int> > *bst = new BSTree<BinarySearchTreeNode<int> >(*node);
+  BinarySearchTree<BinarySearchTreeNode<int> > *bst = new BinarySearchTree<BinarySearchTreeNode<int> >(*node);
 
   BinarySearchTreeNode<int> *smallNode = new BinarySearchTreeNode<int>(7);
   bst->insertNode(*smallNode);
@@ -186,10 +186,10 @@ TEST(BSTree_insertNode함수는, 자신보다_작은_key의_노드를_왼쪽에_
   delete bst;
 }
 
-TEST(BSTree_루트노드는, 부모로_NULL_을_갖는다) {
+TEST(BinarySearchTree_루트노드는, 부모로_NULL_을_갖는다) {
   // setup
   BinarySearchTreeNode<int> *node = new BinarySearchTreeNode<int>(42);
-  BSTree<BinarySearchTreeNode<int> > *bst = new BSTree<BinarySearchTreeNode<int> >(*node);
+  BinarySearchTree<BinarySearchTreeNode<int> > *bst = new BinarySearchTree<BinarySearchTreeNode<int> >(*node);
 
   // test
   EXPECT_EQ((bst->getRoot()).getParent(), node->getParent());
@@ -199,10 +199,10 @@ TEST(BSTree_루트노드는, 부모로_NULL_을_갖는다) {
   delete bst;
 }
 
-TEST(BSTree는, 생성시_반드시_루트노드를_인자로_받는다) {
+TEST(BinarySearchTree는, 생성시_반드시_루트노드를_인자로_받는다) {
   // setup
   BinarySearchTreeNode<int> *node = new BinarySearchTreeNode<int>(42);
-  BSTree<BinarySearchTreeNode<int> > *bst = new BSTree<BinarySearchTreeNode<int> >(*node);
+  BinarySearchTree<BinarySearchTreeNode<int> > *bst = new BinarySearchTree<BinarySearchTreeNode<int> >(*node);
 
   // test
   EXPECT_EQ(bst->getRoot(), *node);

@@ -13,6 +13,6 @@ cc_library(
 
 cc_library(
   name = "bstree",
-  hdrs = ["BSTree.hpp"],
+  hdrs = ["BinarySearchTree.hpp"],
   visibility = ["//visibility:public"]
 )

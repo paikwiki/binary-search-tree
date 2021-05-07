@@ -21,7 +21,7 @@ cc_test(
 
 cc_test(
   name = "bstree",
-  srcs = ["BSTree_test.cpp"],
+  srcs = ["BinarySearchTree_test.cpp"],
   deps = [
     "//include:node",
     "//include:bstree",

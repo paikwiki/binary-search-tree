@@ -6,12 +6,12 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 21:32:47 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/07 13:50:58 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/07 14:05:26 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NODE_H
-#define NODE_H
+#ifndef BINARY_SEARCH_TREE_NODE_H
+#define BINARY_SEARCH_TREE_NODE_H
 
 #include <exception>
 #include <iostream>

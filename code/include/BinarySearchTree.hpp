@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   BSTree.hpp                                         :+:      :+:    :+:   */
+/*   BinarySearchTree.hpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 19:49:51 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/07 14:01:07 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/07 14:06:26 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef B_S_TREE_H
-#define B_S_TREE_H
+#ifndef BINARY_SEARCH_TREE_H
+#define BINARY_SEARCH_TREE_H
 
 #include <iostream>
 
 #include "BinarySearchTreeNode.hpp"
 
 template <typename _Node>
-class BSTree {
+class BinarySearchTree {
  private:
   _Node &root;
 
-  BSTree() {}
+  BinarySearchTree() {}
 
  public:
-  BSTree(BSTree const &bstree) {}
-  BSTree(_Node &root) : root(root) {}
-  ~BSTree() {}
+  BinarySearchTree(BinarySearchTree const &BinarySearchTree) {}
+  BinarySearchTree(_Node &root) : root(root) {}
+  ~BinarySearchTree() {}
 
-  BSTree &operator=(BSTree const &rhs) {}
+  BinarySearchTree &operator=(BinarySearchTree const &rhs) {}
 
   void postorderTraversal() {
     this->root.postorder();
