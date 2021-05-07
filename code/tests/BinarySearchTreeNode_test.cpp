@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 21:45:55 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/07 13:52:04 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/07 14:25:29 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,6 +274,25 @@ TEST(BinarySearchTreeNode의insert함수는, 하위노드가_있을_경우_재�
   delete smallNode;
   delete smallerNode;
   delete smallestNode;
+}
+
+TEST(BinarySearchTreeNode의insert함수는, 삽입시_부모노드를_설정한다) {
+  // setup
+  BinarySearchTreeNode<int> *root = new BinarySearchTreeNode<int>(42);
+
+  BinarySearchTreeNode<int> *leftNode = new BinarySearchTreeNode<int>(7);
+  BinarySearchTreeNode<int> *rightNode = new BinarySearchTreeNode<int>(43);
+  root->insert(root, *leftNode);
+  root->insert(root, *rightNode);
+
+  // test
+  EXPECT_EQ(root->getLeft()->getParent(), root);
+  EXPECT_EQ(root->getRight()->getParent(), root);
+
+  // teardown
+  delete root;
+  delete leftNode;
+  delete rightNode;
 }
 
 TEST(BinarySearchTreeNode의insert함수는, key보다_큰_노드를_우측_하위노드에_추가한다) {

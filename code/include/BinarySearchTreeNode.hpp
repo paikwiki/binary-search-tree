@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 21:32:47 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/07 14:05:26 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/07 14:28:47 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,22 @@
 
 #include "BaseBinaryNode.hpp"
 
-//
 template <typename Node>
 void insertByBST(Node *tree, Node &node) {
   if (tree->getKey() == node.getKey())
     throw std::exception();
   if (tree->getKey() > node.getKey()) {
-    if (tree->getLeft() == NULL)
+    if (tree->getLeft() == NULL) {
+      node.setParent(*tree);
       tree->setLeft(node);
+    }
     else
       tree->getLeft()->insert(tree->getLeft(), node);
   } else {
-    if (tree->getRight() == NULL)
+    if (tree->getRight() == NULL) {
+      node.setParent(*tree);
       tree->setRight(node);
+    }
     else
       tree->getRight()->insert(tree->getRight(), node);
   }
