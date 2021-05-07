@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 21:32:47 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/07 14:55:07 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/07 21:34:20 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,37 +39,45 @@ void insertByBST(Node *tree, Node &node) {
   }
 }
 
-template <typename Node, typename T>
-void inorderByBST(Node *node, void (*f)(T val)) {
+template <typename Node>
+void inorderByBST(Node *node, void (*f)(Node *node)) {
   if (node == static_cast<void *>(NULL))
     return;
   inorderByBST(node->getLeft(), f);
-  f(node->getKey());
+  f(node);
   inorderByBST(node->getRight(), f);
 }
 
-template <typename Node, typename T>
-void preorderByBST(Node *node, void (*f)(T val)) {
+template <typename Node>
+void preorderByBST(Node *node, void (*f)(Node *node)) {
   if (node == static_cast<void *>(NULL))
     return;
-  f(node->getKey());
+  // if (f(node)) {
+  //   return (node);
+  // }
+  f(node);
   preorderByBST(node->getLeft(), f);
   preorderByBST(node->getRight(), f);
 }
 
-template <typename Node, typename T>
-void postorderByBST(Node *node, void (*f)(T val)) {
+template <typename Node>
+void postorderByBST(Node *node, void (*f)(Node *node)) {
   if (node == (static_cast<void *>(NULL)))
     return;
   postorderByBST(node->getLeft(), f);
   postorderByBST(node->getRight(), f);
-  f(node->getKey());
+  f(node);
 }
 
-template <typename T>
-void printValue(T val) {
-  std::cout << val << " ";
+template <typename Node>
+void printValue(Node *node) {
+  std::cout << node->getKey() << " ";
 }
+
+// template <typename Node, typename T>
+// Node *getValue(T val) {
+//   std::cout << val << " ";
+// }
 
 template <typename T>
 class BinarySearchTreeNode : public BaseBinaryNode<T> {
