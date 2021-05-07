@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 21:32:47 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/06 21:10:14 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/07 13:45:13 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,91 +15,86 @@
 
 #include <exception>
 #include <iostream>
-#include <sstream>
+
+#include "BaseBinaryNode.hpp"
+
+//
+template <typename Node>
+void insertByBST(Node *tree, Node &node) {
+  if (tree->getKey() == node.getKey())
+    throw std::exception();
+  if (tree->getKey() > node.getKey()) {
+    if (tree->getLeft() == NULL)
+      tree->setLeft(node);
+    else
+      tree->getLeft()->insert(tree->getLeft(), node);
+  } else {
+    if (tree->getRight() == NULL)
+      tree->setRight(node);
+    else
+      tree->getRight()->insert(tree->getRight(), node);
+  }
+}
+
+template <typename Node, typename T>
+void inorderByBST(Node *node, void (*f)(T val)) {
+  if (node == static_cast<void *>(NULL))
+    return;
+  inorderByBST(node->getLeft(), f);
+  f(node->getKey());
+  inorderByBST(node->getRight(), f);
+}
+
+template <typename Node, typename T>
+void preorderByBST(Node *node, void (*f)(T val)) {
+  if (node == static_cast<void *>(NULL))
+    return;
+  f(node->getKey());
+  preorderByBST(node->getLeft(), f);
+  preorderByBST(node->getRight(), f);
+}
+
+template <typename Node, typename T>
+void postorderByBST(Node *node, void (*f)(T val)) {
+  if (node == (static_cast<void *>(NULL)))
+    return;
+  postorderByBST(node->getLeft(), f);
+  postorderByBST(node->getRight(), f);
+  f(node->getKey());
+}
 
 template <typename T>
-class Node {
- private:
-  T key;
-  Node *parent;
-  Node *left;
-  Node *right;
+void printValue(T val) {
+  std::cout << val << " ";
+}
 
+template <typename T>
+class Node : public BaseBinaryNode<T> {
+ private:
   Node() {}
 
  public:
-
   Node(Node const &node) {}
 
-  Node(T key) : key(key),
-                parent(NULL),
-                left(NULL),
-                right(NULL) {}
+  Node(T key) : BaseBinaryNode<T>(key) {
+    this->insert = insertByBST;
+  }
 
   ~Node(){};
 
-  Node &operator=(Node const &rhs) {}
-
-  void setKey(T &key) { this->key = &key; }
-  void setLeft(Node<T> &left) { this->left = &left; }
-  void setRight(Node<T> &right) { this->right = &right; }
-  void setParent(Node<T> &parent) { this->parent = &parent; }
-
-  T const getKey() const { return (this->key); }
-  Node<T> const *getLeft() const { return (this->left); }
-  Node<T> const *getRight() const { return (this->right); }
-  Node<T> const *getParent() const { return (this->parent); }
-
-  void insert(Node<T> &node) {
-    if (this->key == node.key)
-      throw std::exception();
-    if (this->key > node.key) {
-      if (this->left == NULL)
-        this->left = &node;
-      else
-        this->left->insert(node);
-    } else {
-      if (this->right == NULL)
-        this->right = &node;
-      else
-        this->right->insert(node);
-    }
-  }
-
   void postorder() {
-    if (this == (static_cast<void *>(NULL)))
-      return;
-    this->left->postorder();
-    this->right->postorder();
-    std::cout << this->key << " ";
+    this->travesal = postorderByBST;
+    this->travesal(this, printValue);
   }
 
   void inorder() {
-    if (this == static_cast<void *>(NULL))
-      return;
-    this->left->inorder();
-    std::cout << this->key << " ";
-    this->right->inorder();
+    this->travesal = inorderByBST;
+    this->travesal(this, printValue);
   }
 
   void preorder() {
-    if (this == static_cast<void *>(NULL))
-      return;
-    std::cout << this->key << " ";
-    this->left->preorder();
-    this->right->preorder();
-  }
-
-  friend bool operator==(Node const &lhs, Node const &rhs) {
-    return (lhs.key == rhs.key);
-  }
-
-  friend bool operator>(Node const &lhs, Node const &rhs) {
-    return (lhs.key > rhs.key);
-  }
-
-  friend bool operator<(Node const &lhs, Node const &rhs) {
-    return (lhs.key < rhs.key);
+    this->travesal = preorderByBST;
+    this->travesal(this, printValue);
   }
 };
 

@@ -6,14 +6,12 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 21:21:37 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/06 21:30:48 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/07 13:40:04 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BASE_BINARY_NODE_H
 #define BASE_BINARY_NODE_H
-
-#include <iostream>
 
 template <typename T>
 class BaseBinaryNode {
@@ -22,7 +20,6 @@ class BaseBinaryNode {
   BaseBinaryNode *parent;
   BaseBinaryNode *left;
   BaseBinaryNode *right;
-
   BaseBinaryNode() {}
 
  public:
@@ -33,19 +30,22 @@ class BaseBinaryNode {
                 left(NULL),
                 right(NULL) {}
 
-  ~BaseBinaryNode(){};
+  virtual ~BaseBinaryNode(){};
 
   BaseBinaryNode &operator=(BaseBinaryNode const &rhs) {}
 
-  void setKey(T &key) { this->key = &key; }
-  void setLeft(BaseBinaryNode<T> &left) { this->left = &left; }
-  void setRight(BaseBinaryNode<T> &right) { this->right = &right; }
-  void setParent(BaseBinaryNode<T> &parent) { this->parent = &parent; }
+  void (*insert)(BaseBinaryNode<T> *tree, BaseBinaryNode<T> &node);
+  void (*travesal)(BaseBinaryNode<T> *tree, void (*f)(T val));
 
-  T const getKey() const { return (this->key); }
-  BaseBinaryNode<T> const *getLeft() const { return (this->left); }
-  BaseBinaryNode<T> const *getRight() const { return (this->right); }
-  BaseBinaryNode<T> const *getParent() const { return (this->parent); }
+  virtual void setKey(T &key) { this->key = key; }
+  virtual void setLeft(BaseBinaryNode<T> &left) { this->left = &left; }
+  virtual void setRight(BaseBinaryNode<T> &right) { this->right = &right; }
+  virtual void setParent(BaseBinaryNode<T> &parent) { this->parent = &parent; }
+
+  virtual T const getKey() const { return (this->key); }
+  virtual BaseBinaryNode<T> *getLeft() const { return (this->left); }
+  virtual BaseBinaryNode<T> *getRight() const { return (this->right); }
+  virtual BaseBinaryNode<T> *getParent() const { return (this->parent); }
 
   friend bool operator==(BaseBinaryNode const &lhs, BaseBinaryNode const &rhs) {
     return (lhs.key == rhs.key);

@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 21:45:55 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/06 21:16:48 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/07 13:27:51 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,12 +154,12 @@ TEST(Node의insert함수는, 트리에_이미_해당값이_있을_경우_예외�
   Node<int> *node3 = new Node<int>(42);
   Node<int> *node4 = new Node<int>(2);
 
-  root->insert(*node1);
-  root->insert(*node2);
+  root->insert(root, *node1);
+  root->insert(root, *node2);
 
   // test
-  EXPECT_THROW(root->insert(*node3), std::exception);
-  EXPECT_THROW(root->insert(*node4), std::exception);
+  EXPECT_THROW(root->insert(root, *node3), std::exception);
+  EXPECT_THROW(root->insert(root, *node4), std::exception);
 
   // teardown
   delete root;
@@ -175,7 +175,7 @@ TEST(Node의insert함수는, 트리에_이미_해당값이_있을_경우_예외�
   Node<int> *node1 = new Node<int>(42);
 
   // test
-  EXPECT_THROW(root->insert(*node1), std::exception);
+  EXPECT_THROW(root->insert(root, *node1), std::exception);
 
   // teardown
   delete root;
@@ -194,9 +194,9 @@ TEST(Node의insert함수는, 하위노드가_있을_경우_재귀적으로_삽�
   Node<int> *node1 = new Node<int>(2);
   Node<int> *node2 = new Node<int>(21);
   Node<int> *node3 = new Node<int>(42);
-  root->insert(*node1);
-  root->insert(*node2);
-  root->insert(*node3);
+  root->insert(root, *node1);
+  root->insert(root, *node2);
+  root->insert(root, *node3);
 
   // test
   EXPECT_EQ(root->getLeft()->getKey(), 2);
@@ -221,22 +221,22 @@ TEST(Node의insert함수는, 하위노드가_있을_경우_재귀적으로_삽�
   //    /  \
   //   2   21
 
-  Node<int> *node = new Node<int>(42);
+  Node<int> *root = new Node<int>(42);
   Node<int> *smallerNode = new Node<int>(4);
   Node<int> *smallNode = new Node<int>(21);
   Node<int> *smallestNode = new Node<int>(2);
-  node->insert(*smallerNode);
-  node->insert(*smallNode);
-  node->insert(*smallestNode);
+  root->insert(root, *smallerNode);
+  root->insert(root, *smallNode);
+  root->insert(root, *smallestNode);
 
   // test
-  EXPECT_EQ(node->getLeft()->getKey(), 4);
-  EXPECT_EQ(node->getLeft()->getLeft()->getKey(), 2);
-  EXPECT_EQ(node->getLeft()->getRight()->getKey(), 21);
-  EXPECT_EQ(node->getRight(),  static_cast<void *>(NULL));
+  EXPECT_EQ(root->getLeft()->getKey(), 4);
+  EXPECT_EQ(root->getLeft()->getLeft()->getKey(), 2);
+  EXPECT_EQ(root->getLeft()->getRight()->getKey(), 21);
+  EXPECT_EQ(root->getRight(),  static_cast<void *>(NULL));
 
   // teardown
-  delete node;
+  delete root;
   delete smallNode;
   delete smallerNode;
   delete smallestNode;
@@ -252,25 +252,25 @@ TEST(Node의insert함수는, 하위노드가_있을_경우_재귀적으로_삽�
   //   /
   //  2
 
-  Node<int> *node = new Node<int>(42);
+  Node<int> *root = new Node<int>(42);
   Node<int> *smallNode = new Node<int>(21);
   Node<int> *smallerNode = new Node<int>(4);
   Node<int> *smallestNode = new Node<int>(2);
-  node->insert(*smallNode);
-  node->insert(*smallerNode);
-  node->insert(*smallestNode);
+  root->insert(root, *smallNode);
+  root->insert(root, *smallerNode);
+  root->insert(root, *smallestNode);
 
   // test
-  EXPECT_EQ(node->getLeft()->getKey(), 21);
-  EXPECT_EQ(node->getLeft()->getLeft()->getKey(), 4);
-  EXPECT_EQ(node->getLeft()->getLeft()->getLeft()->getKey(), 2);
-  EXPECT_EQ(node->getRight(),  static_cast<void *>(NULL));
-  EXPECT_EQ(node->getLeft()->getRight(),  static_cast<void *>(NULL));
-  EXPECT_EQ(node->getLeft()->getLeft()->getRight(),  static_cast<void *>(NULL));
-  EXPECT_EQ(node->getLeft()->getLeft()->getLeft()->getRight(),  static_cast<void *>(NULL));
+  EXPECT_EQ(root->getLeft()->getKey(), 21);
+  EXPECT_EQ(root->getLeft()->getLeft()->getKey(), 4);
+  EXPECT_EQ(root->getLeft()->getLeft()->getLeft()->getKey(), 2);
+  EXPECT_EQ(root->getRight(),  static_cast<void *>(NULL));
+  EXPECT_EQ(root->getLeft()->getRight(),  static_cast<void *>(NULL));
+  EXPECT_EQ(root->getLeft()->getLeft()->getRight(),  static_cast<void *>(NULL));
+  EXPECT_EQ(root->getLeft()->getLeft()->getLeft()->getRight(),  static_cast<void *>(NULL));
 
   // teardown
-  delete node;
+  delete root;
   delete smallNode;
   delete smallerNode;
   delete smallestNode;
@@ -280,7 +280,7 @@ TEST(Node의insert함수는, key보다_큰_노드를_우측_하위노드에_추�
   // setup
   Node<int> *node = new Node<int>(42);
   Node<int> *bigNode = new Node<int>(84);
-  node->insert(*bigNode);
+  node->insert(node, *bigNode);
 
   // test
   EXPECT_EQ(node->getRight()->getKey(), 84);
@@ -295,7 +295,7 @@ TEST(Node의insert함수는, key보다_작은_노드를_좌측_하위노드에_�
   // setup
   Node<int> *node = new Node<int>(42);
   Node<int> *smallNode = new Node<int>(21);
-  node->insert(*smallNode);
+  node->insert(node, *smallNode);
 
   // test
   EXPECT_EQ(node->getLeft()->getKey(), 21);
@@ -303,6 +303,7 @@ TEST(Node의insert함수는, key보다_작은_노드를_좌측_하위노드에_�
 
   // teardown
   delete node;
+  delete smallNode;
 }
 
 TEST(Node는, 상위노드를_가질_수_있다) {
