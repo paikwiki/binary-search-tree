@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 21:32:47 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/08 13:05:09 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/08 15:22:46 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,16 +71,31 @@ Node *postorderByBST(Node *node, bool (*f)(Node *node)) {
 }
 
 template <typename Node>
+Node *findByBST(Node *node, Node *target, bool (*f)(Node *, Node *)) {
+  Node *temp = static_cast<Node *>(NULL);
+  if (f(node, target))
+    return (node);
+  if (node->getLeft() != static_cast<Node *>(NULL))
+    temp = findByBST(node->getLeft(), target, f);
+  if (temp != static_cast<Node *>(NULL))
+    return (temp);
+  if (node->getRight() != static_cast<Node *>(NULL))
+    temp = findByBST(node->getRight(), target, f);
+  if (temp != static_cast<Node *>(NULL))
+    return (temp);
+  return (static_cast<Node *>(NULL));
+}
+
+template <typename Node>
 bool printValue(Node *node) {
   std::cout << node->getKey() << " ";
   return false;
 }
 
-// template <typename Node, typename T>
-// Node *getValue(T val) {
-//   std::cout << val << " ";
-// }
-
+template <typename Node>
+bool isSame(Node *current, Node *target) {
+  return (current->getKey() == target->getKey());
+}
 template <typename T>
 class BinarySearchTreeNode : public BaseBinaryNode<T> {
  private:
@@ -94,6 +109,11 @@ class BinarySearchTreeNode : public BaseBinaryNode<T> {
   }
 
   ~BinarySearchTreeNode(){};
+
+  BaseBinaryNode<T> *find(BaseBinaryNode<T> *target) {
+    this->baseFind = findByBST;
+    return (this->baseFind(this, target, isSame));
+  }
 
   void postorder() {
     this->traversal = postorderByBST;

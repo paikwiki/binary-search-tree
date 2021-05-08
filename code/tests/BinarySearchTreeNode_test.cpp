@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 21:45:55 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/07 20:58:08 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/08 15:23:12 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,53 @@
 #include <sstream>
 
 #include "gtest/gtest.h"
+
+TEST(BinarySearchTreeNode의find함수는, 일치하는_노드를_찾아_반환할수있다) {
+  // setup
+  BinarySearchTreeNode<char> *A = new BinarySearchTreeNode<char>('A');
+  BinarySearchTreeNode<char> *B = new BinarySearchTreeNode<char>('B');
+  BinarySearchTreeNode<char> *C = new BinarySearchTreeNode<char>('C');
+  BinarySearchTreeNode<char> *D = new BinarySearchTreeNode<char>('D');
+  BinarySearchTreeNode<char> *E = new BinarySearchTreeNode<char>('E');
+  BinarySearchTreeNode<char> *F = new BinarySearchTreeNode<char>('F');
+  BinarySearchTreeNode<char> *G = new BinarySearchTreeNode<char>('G');
+  BinarySearchTreeNode<char> *H = new BinarySearchTreeNode<char>('H');
+  BinarySearchTreeNode<char> *I = new BinarySearchTreeNode<char>('I');
+  BinarySearchTreeNode<char> *J = new BinarySearchTreeNode<char>('J');
+
+  A->insert(A, *B);
+  A->insert(A, *C);
+  A->insert(A, *D);
+  A->insert(A, *E);
+  A->insert(A, *F);
+  A->insert(A, *G);
+  A->insert(A, *H);
+  A->insert(A, *I);
+
+  // test
+  EXPECT_EQ(A->find(A), A);
+  EXPECT_EQ(A->find(B), B);
+  EXPECT_EQ(A->find(C), C);
+  EXPECT_EQ(A->find(D), D);
+  EXPECT_EQ(A->find(E), E);
+  EXPECT_EQ(A->find(F), F);
+  EXPECT_EQ(A->find(G), G);
+  EXPECT_EQ(A->find(H), H);
+  EXPECT_EQ(A->find(I), I);
+
+
+  // teardown
+  delete A;
+  delete B;
+  delete C;
+  delete D;
+  delete E;
+  delete F;
+  delete G;
+  delete H;
+  delete I;
+  delete J;
+}
 
 TEST(BinarySearchTreeNode의postorder함수는, 후위순회를_할수있다) {
   // setup
