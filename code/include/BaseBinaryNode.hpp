@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 21:21:37 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/08 13:03:14 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/08 13:32:44 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ class BaseBinaryNode {
   BaseBinaryNode(T key) : key(key),
                           parent(NULL),
                           left(NULL),
-                          right(NULL) {}
+                          right(NULL),
+                          insert(NULL),
+                          traversal(NULL) {}
 
   virtual ~BaseBinaryNode(){};
 
