@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 21:32:47 by cbaek             #+#    #+#             */
-/*   Updated: 2021/05/07 21:34:20 by cbaek            ###   ########.fr       */
+/*   Updated: 2021/05/08 13:05:09 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,52 +26,54 @@ void insertByBST(Node *tree, Node &node) {
     if (tree->getLeft() == NULL) {
       node.setParent(*tree);
       tree->setLeft(node);
-    }
-    else
+    } else
       tree->getLeft()->insert(tree->getLeft(), node);
   } else {
     if (tree->getRight() == NULL) {
       node.setParent(*tree);
       tree->setRight(node);
-    }
-    else
+    } else
       tree->getRight()->insert(tree->getRight(), node);
   }
 }
 
 template <typename Node>
-void inorderByBST(Node *node, void (*f)(Node *node)) {
+Node *inorderByBST(Node *node, bool (*f)(Node *node)) {
   if (node == static_cast<void *>(NULL))
-    return;
+    return (node);
   inorderByBST(node->getLeft(), f);
-  f(node);
+  if (f(node))
+    return (node);
   inorderByBST(node->getRight(), f);
+  return (static_cast<Node *>(NULL));
 }
 
 template <typename Node>
-void preorderByBST(Node *node, void (*f)(Node *node)) {
+Node *preorderByBST(Node *node, bool (*f)(Node *node)) {
   if (node == static_cast<void *>(NULL))
-    return;
-  // if (f(node)) {
-  //   return (node);
-  // }
-  f(node);
+    return (node);
+  if (f(node))
+    return (node);
   preorderByBST(node->getLeft(), f);
   preorderByBST(node->getRight(), f);
+  return (static_cast<Node *>(NULL));
 }
 
 template <typename Node>
-void postorderByBST(Node *node, void (*f)(Node *node)) {
-  if (node == (static_cast<void *>(NULL)))
-    return;
+Node *postorderByBST(Node *node, bool (*f)(Node *node)) {
+  if (node == static_cast<void *>(NULL))
+    return (node);
   postorderByBST(node->getLeft(), f);
   postorderByBST(node->getRight(), f);
-  f(node);
+  if (f(node))
+    return (node);
+  return (static_cast<Node *>(NULL));
 }
 
 template <typename Node>
-void printValue(Node *node) {
+bool printValue(Node *node) {
   std::cout << node->getKey() << " ";
+  return false;
 }
 
 // template <typename Node, typename T>
